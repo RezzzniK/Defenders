@@ -3,10 +3,15 @@ using UnityEngine;
 public class ColllisionHandler : MonoBehaviour
 {
    [SerializeField] GameObject exp;
+   GameSceneManager mngr;
    /// <summary>
    /// OnTriggerEnter is called when the Collider other enters the trigger.
    /// </summary>
    /// <param name="other">The other Collider involved in this collision.</param>
+   /// 
+    void Start (){
+        mngr=FindFirstObjectByType<GameSceneManager>();
+    }
    void OnTriggerEnter(Collider other)
    {
       
@@ -15,5 +20,6 @@ public class ColllisionHandler : MonoBehaviour
       Debug.LogWarning($"You Collided with:{other.name}");
       Destroy(this.gameObject);
       
+      mngr.ReloadScene();
    }
 }
